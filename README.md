@@ -78,6 +78,12 @@ A boolean input to trigger docker prune command.
 The args for the pre deploument command. Applicable only for docker-compose.
 ### `pull_images_first`
 Pull docker images before deploying. Applicable only for docker-compose.
+### `docker_login_username`
+Username used to login into docker hub with `docker login`.
+### `docker_login_password`
+Password used to login into docker hub with `docker login`.
+### `docker_login_registry`
+URL of the registry to login to with `docker login`.
 
 ## License
 

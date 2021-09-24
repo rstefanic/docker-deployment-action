@@ -88,6 +88,11 @@ if ! [ -z "$INPUT_DOCKER_PRUNE" ] && [ $INPUT_DOCKER_PRUNE = 'true' ] ; then
   yes | docker --log-level debug --host "ssh://$INPUT_REMOTE_DOCKER_HOST:$INPUT_REMOTE_DOCKER_PORT" system prune -a 2>&1
 fi
 
+if ! [ -z "$INPUT_DOCKER_LOGIN_USERNAME" ] && ! [ -z "$INPUT_DOCKER_LOGIN_PASSWORD" ] ; then
+  echo "Logging into Docker Registry"
+  echo ${INPUT_DOCKER_LOGIN_PASSWORD} | docker login -u ${INPUT_DOCKER_LOGIN_USERNAME} --password-stdin ${INPUT_DOCKER_LOGIN_REGISTRY}
+fi
+
 if ! [ -z "$INPUT_COPY_STACK_FILE" ] && [ $INPUT_COPY_STACK_FILE = 'true' ] ; then
   execute_ssh "mkdir -p $INPUT_DEPLOY_PATH/stacks || true"
   FILE_NAME="docker-stack-$(date +%Y%m%d%s).yaml"

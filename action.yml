@@ -42,6 +42,15 @@ inputs:
   pull_images_first:
     description: Pull docker images before deploying.
     required: false
+  docker_login_username:
+    description: Username to use with the docker login command.
+    required: false
+  docker_login_password:
+    description: Password to use with the docker login command.
+    required: false
+  docker_login_registry:
+    description: URL of the registry to use with the docker login command.
+    required: false
 
 runs:
   using: docker
@@ -50,4 +59,3 @@ runs:
 branding:
   icon: send
   color: green
-
